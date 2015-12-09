@@ -9,7 +9,7 @@ public class Hand {
   public static final Scanner input = new Scanner(System.in);
 
   public Hand(){
-    this.setHand(null);
+    this.hand = new ArrayList<Integer>();
   }
 
   public ArrayList <Integer> getHand() {
@@ -19,9 +19,9 @@ public class Hand {
   public void setHand(ArrayList <Integer> hand) {
     this.hand = hand;
   }
-  
-  public void displayHand(){
-    ArrayList<String> handFaceValue = null;
+
+  public void displayHand(String name){
+    ArrayList<String> handFaceValue = new ArrayList<String>();
     for (int i = 0; i < hand.size(); i++){
       if((hand.get(i)%100) == 13){
         handFaceValue.add("K");
@@ -36,7 +36,7 @@ public class Hand {
         handFaceValue.add(String.valueOf(value));
       }
     }
-    System.out.println(" Your hand: " + handFaceValue);
+    System.out.println(name + ", your hand: " + handFaceValue);
   }
 
   public boolean isEmpty(){
@@ -55,47 +55,67 @@ public class Hand {
   }
 
   public void addCard(int value){
-    Deck.drawCard();
-
+    this.hand.add(value);
   }
 
-  public int dropCard(){
-    int value =0;
-    return value;
+  public void dropCard(int discard){
+    hand.remove(discard);
   }
 
-  public int[] sumAndProduct(){
+
+  public int[] sumAndProduct(String name){
     int[] total = new int[2];
     int sum = 0;
     int product = 1;
     for(int i = 0; i < hand.size(); i++){
       if((hand.get(i)%100) == 1){
-        sum = sum + aceValue();
-        product = product*aceValue();
-      } else {
+        sum = sum + aceValue(name , "sum");
+        product = product*aceValue(name , "product");
+      } else if ((hand.get(i)%100) > 10){
+        sum = sum + 10;
+        product = product * 10;
+      } else{
         sum = sum + (hand.get(i)%100);
         product = product * (hand.get(i)%100);
       }
-      total[0]=sum;
-      total[1]=product;
     }
+    System.out.println("Your sum is " + sum + ".");
+    total[0]=sum;
+    System.out.println("Your product is " + product + ".");
+    total[1]=product;
     return total;
   }
 
-  public int containsCard(){
-    int i;
-    for(i = 0 ;  i < hand.size(); i++){
-
-
+  public int containsCard(String card){
+    int index = -1;
+    ArrayList<String> handFaceValue = new ArrayList<String>();
+    for (int i = 0; i < hand.size(); i++){
+      if((hand.get(i)%100) == 13){
+        handFaceValue.add("K");
+      } else if ((hand.get(i)%100) == 12){
+        handFaceValue.add("Q");
+      }else if ((hand.get(i)%100) == 11){
+        handFaceValue.add("J");
+      }else if ((hand.get(i)%100) == 1){
+        handFaceValue.add("A");
+      } else {
+        int value = hand.get(i)%100;
+        handFaceValue.add(String.valueOf(value));
+      }
     }
-    return hand.get(i);
+    for (int i = 0; i < hand.size(); i ++){
+      if(handFaceValue.get(i).equalsIgnoreCase(card)){
+        index = i;
+      }
+    }
+    return index;
   }
 
-  public int aceValue(){
-    System.out.println("Would you like to use your Ace as a 1 or 11?");
+  public int aceValue(String name, String type){
+    System.out.println(name + ", would you like to use your Ace as a 1 or 11 to find the " + type + "?");
     int value = input.nextInt();
-    while(value != 1 || value != 11){
-      System.out.println("Invalid input. Would you like to use your Ace as a 1 or 11? ");
+    while(value != 1 && value != 11){
+      System.out.println("Invalid input. Would you like to use your Ace as a 1 or 11 to find the " + type + "?");
       value = input.nextInt();
     }
     return value;
