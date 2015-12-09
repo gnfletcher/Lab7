@@ -20,6 +20,7 @@ public class Player {
   }
 
   public boolean takeTurn(){
+    System.out.println(name + ", your target: " + deck.getTarget());
     displayHand();
     pickUpOrDrop();
     return true;
@@ -37,8 +38,8 @@ public class Player {
       System.out.println("You must discard!");
       drop();
     } else {
-      System.out.println("Your target: " + deck.getTarget());
-      displayHand();
+      //System.out.println("Your target: " + deck.getTarget());
+      //displayHand();
       System.out.println("Would you like to draw or discard?");
       System.out.println("Please enter 'draw' or 'discard': ");
       String action = input.next();
@@ -90,7 +91,6 @@ public class Player {
 
   public boolean completeTurn(){
     int[] total = hand.sumAndProduct(name);
-    System.out.println(deck.getTarget());
     if (total[0] == deck.getTarget() || total [1] == deck.getTarget()){
       return true;
     }

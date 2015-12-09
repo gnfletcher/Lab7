@@ -79,9 +79,9 @@ public class Hand {
         product = product * (hand.get(i)%100);
       }
     }
-    System.out.println("Your sum is " + sum + ".");
+    System.out.println(name +", your sum is " + sum + ".");
     total[0]=sum;
-    System.out.println("Your product is " + product + ".");
+    System.out.println(name +", your product is " + product + ".");
     total[1]=product;
     return total;
   }
