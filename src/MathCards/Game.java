@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Game {
 
-
+  public static Deck deck = new Deck();
   public static final Scanner input = new Scanner(System.in);
 
   public static void main(String[] args) {
@@ -41,5 +41,8 @@ public class Game {
     }while (!player1.completeTurn() || !player2.completeTurn());
   }
 
+  public static Deck getDeck() {
+    return deck;
+  }
 
 }

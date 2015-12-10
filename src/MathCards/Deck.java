@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Deck {
 
-  private ArrayList<Integer> deck = new ArrayList<Integer>();
+  public ArrayList<Integer> deck = new ArrayList<Integer>();
   private ArrayList<Integer> discard = new ArrayList<Integer>();
   private int target;
 
@@ -78,7 +78,7 @@ public class Deck {
         deck.add(shuffle.get(i));
         shuffle.remove(i);
       }
-      //System.out.println(deck);
+      System.out.println(deck);
     }
   }
 

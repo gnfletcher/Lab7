@@ -112,10 +112,12 @@ public class Hand {
   }
 
   public int aceValue(String name, String type){
-    System.out.println(name + ", would you like to use your Ace as a 1 or 11 to find the " + type + "?");
+    System.out.println(name + ", would you like to use your Ace as a 1 or 11 to find the " + type +
+        "?");
     int value = input.nextInt();
     while(value != 1 && value != 11){
-      System.out.println("Invalid input. Would you like to use your Ace as a 1 or 11 to find the " + type + "?");
+      System.out.println("Invalid input. Would you like to use your Ace as a 1 or 11 to find the " 
+          + type + "?");
       value = input.nextInt();
     }
     return value;

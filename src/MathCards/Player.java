@@ -6,7 +6,6 @@ public class Player {
 
   private String name;
   private Hand hand = new Hand();
-  private Deck deck = new Deck();
   public static final Scanner input = new Scanner(System.in);
 
   public Player() {
@@ -20,7 +19,7 @@ public class Player {
   }
 
   public boolean takeTurn(){
-    System.out.println(name + ", your target: " + deck.getTarget());
+    System.out.println("Target: " + Game.getDeck().getTarget());
     displayHand();
     pickUpOrDrop();
     return true;
@@ -56,7 +55,7 @@ public class Player {
   }
 
   public void pickUp(){
-    int value = deck.drawCard();
+    int value = Game.getDeck().drawCard();
     hand.addCard(value);
     value = value%100;
     if(value == 13){
@@ -80,7 +79,7 @@ public class Player {
       displayHand();
       System.out.println("Which card would you like to discard?");
       System.out.println("Please enter the value of the card and hit enter: ");
-      value = input.nextLine();
+      value = input.next();
       discard = hand.containsCard(value);
       if (discard == -1){
         System.out.println("Card does not exist in hand. Please try again.");
@@ -91,7 +90,7 @@ public class Player {
 
   public boolean completeTurn(){
     int[] total = hand.sumAndProduct(name);
-    if (total[0] == deck.getTarget() || total [1] == deck.getTarget()){
+    if (total[0] == Game.getDeck().getTarget() || total [1] == Game.getDeck().getTarget()){
       return true;
     }
     return false;
