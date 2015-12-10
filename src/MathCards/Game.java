@@ -14,7 +14,7 @@ public class Game {
     System.out.println(("Please enter your name, Player 2"));
     Player player2 = new Player (input.nextLine());
 
-    do {
+    while( !player1.targetReached() && !player2.targetReached()){
       player1.takeTurn();
       if(player1.completeTurn()){
         player2.takeTurn();
@@ -36,7 +36,7 @@ public class Game {
           }
         }
       }
-    }while( player1.targetReached() || !player2.targetReached());
+    }
   }
 
   public static Deck getDeck() {

@@ -62,7 +62,6 @@ public class Hand {
     hand.remove(discard);
   }
 
-
   public int[] sumAndProduct(String name){
     int[] total = new int[2];
     int sum = 0;

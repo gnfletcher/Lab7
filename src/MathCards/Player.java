@@ -6,7 +6,7 @@ public class Player {
 
   private String name;
   private Hand hand = new Hand();
-
+  public int [] total = new int[2];
   public static final Scanner input = new Scanner(System.in);
 
   public Player() {
@@ -89,7 +89,6 @@ public class Player {
   }
   
   public boolean targetReached(){
-    int[] total = hand.sumAndProduct(name);
     if (total[0] == Game.getDeck().getTarget() || total [1] == Game.getDeck().getTarget()){
       return true;
     }
@@ -97,7 +96,7 @@ public class Player {
   }
 
   public boolean completeTurn(){
-    int[] total = hand.sumAndProduct(name);
+    total = hand.sumAndProduct(name);
     System.out.println(name +", your sum is " + total[0] + ".");
     System.out.println(name +", your product is " + total[1] + ".");
     System.out.println("");
