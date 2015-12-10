@@ -6,6 +6,7 @@ public class Player {
 
   private String name;
   private Hand hand = new Hand();
+
   public static final Scanner input = new Scanner(System.in);
 
   public Player() {
@@ -20,6 +21,7 @@ public class Player {
 
   public boolean takeTurn(){
     System.out.println("Target: " + Game.getDeck().getTarget());
+    System.out.println(name + "'s turn!");
     displayHand();
     pickUpOrDrop();
     return true;
@@ -31,14 +33,12 @@ public class Player {
 
   public void pickUpOrDrop(){
     if(hand.isEmpty()){
-      System.out.println("You must draw!");
+      System.out.println("Your hand is empty, you must draw!");
       pickUp();
     } else if (hand.isFull()){
-      System.out.println("You must discard!");
+      System.out.println("Your hand is full, you must discard!");
       drop();
     } else {
-      //System.out.println("Your target: " + deck.getTarget());
-      //displayHand();
       System.out.println("Would you like to draw or discard?");
       System.out.println("Please enter 'draw' or 'discard': ");
       String action = input.next();
@@ -52,31 +52,31 @@ public class Player {
         drop();
       }
     }
+    hand.displayHand(name);
   }
 
   public void pickUp(){
     int value = Game.getDeck().drawCard();
     hand.addCard(value);
     value = value%100;
+    System.out.print(name + " drew ");
     if(value == 13){
-      System.out.println("K");
+      System.out.println("a K");
     } else if (value == 12){
-      System.out.println("Q");
+      System.out.println("a Q");
     } else if (value == 11){
-      System.out.println("J");
+      System.out.println("a J");
     } else if (value == 1){
-      System.out.println("A");
+      System.out.println("an A");
     } else {
-      System.out.println(value);
+      System.out.println("a " + value);
     }
-    hand.displayHand(name);
   }
 
   public void drop(){
     String value;
     int discard;
     do{
-      displayHand();
       System.out.println("Which card would you like to discard?");
       System.out.println("Please enter the value of the card and hit enter: ");
       value = input.next();
@@ -87,10 +87,21 @@ public class Player {
     } while (hand.containsCard(value) == -1);
     hand.dropCard(discard);
   }
+  
+  public boolean targetReached(){
+    int[] total = hand.sumAndProduct(name);
+    if (total[0] == Game.getDeck().getTarget() || total [1] == Game.getDeck().getTarget()){
+      return true;
+    }
+    return false;
+  }
 
   public boolean completeTurn(){
     int[] total = hand.sumAndProduct(name);
-    if (total[0] == Game.getDeck().getTarget() || total [1] == Game.getDeck().getTarget()){
+    System.out.println(name +", your sum is " + total[0] + ".");
+    System.out.println(name +", your product is " + total[1] + ".");
+    System.out.println("");
+    if (targetReached()){
       return true;
     }
     return false;
@@ -102,5 +113,9 @@ public class Player {
 
   public void setName(String name) {
     this.name = name;
+  }
+  
+  public Hand getHand(){
+    return this.hand;
   }
 }
