@@ -20,6 +20,7 @@ public class Player {
   }
 
   public boolean takeTurn(){
+    //Test.printDecks();
     System.out.println("Target: " + Game.getDeck().getTarget());
     System.out.println(name + "'s turn!");
     displayHand();
@@ -41,6 +42,7 @@ public class Player {
     } else {
       System.out.println("Would you like to draw or discard?");
       System.out.println("Please enter 'draw' or 'discard': ");
+      //Test.typeDraw();
       String action = input.next();
       while(!(action.equalsIgnoreCase("draw") || action.equalsIgnoreCase("discard"))){
         System.out.println("Invalid input, please enter 'draw' or 'discard': ");
@@ -79,6 +81,7 @@ public class Player {
     do{
       System.out.println("Which card would you like to discard?");
       System.out.println("Please enter the value of the card and hit enter: ");
+      //Test.typeDiscardValue(hand.getHand().get((int) Math.floor(Math.random()*4)+1));
       value = input.next();
       discard = hand.containsCard(value);
       if (discard == -1){

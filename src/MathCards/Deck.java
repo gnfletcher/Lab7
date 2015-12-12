@@ -9,9 +9,8 @@ public class Deck {
   private int target;
 
   public Deck(){
-    discard = null;
     this.setTarget((int) ((Math.random()*40)+10));
-    while ( deck.size() < 52){
+    while (deck.size() < 52){
       int i = 101;
       while(i < 114){
         deck.add(i);
@@ -61,8 +60,8 @@ public class Deck {
     for(int i = 0; i < discard.size(); i ++){
       deck.add(discard.get(i));
     }
+    discard = new ArrayList<Integer>();
     shuffle();
-    discard = null;
   }
 
   public void shuffle(){
@@ -78,7 +77,7 @@ public class Deck {
         deck.add(shuffle.get(i));
         shuffle.remove(i);
       }
-      System.out.println(deck);
+      //Test.printDeck(deck);
     }
   }
 
@@ -88,5 +87,13 @@ public class Deck {
 
   public void setTarget(int target) {
     this.target = target;
+  }
+
+  public ArrayList<Integer> getDeck() {
+    return deck;
+  }
+
+  public ArrayList<Integer> getDiscard() {
+    return discard;
   }
 }
