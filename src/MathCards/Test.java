@@ -6,28 +6,36 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Test {
-  
-  /* Uncomment the following lines to test:
+
+  /* 
+   * Automated testing for MathCards package. Assigns names to players. Draws on every turn until 
+   * players hand is full. Randomly selects card to discard when players hand is full. Selects 
+   * value of 11 for Ace is this will meet the target value otherwise it selects a value of 1.
+   * There are also methods to print values for deck and discard pile.
+   * Uncomment the following lines to test:
    * MathCards.Game: lines 61 & 67
    * MathCards.Player: lines 23, 45 & 84
    * MathCards.Deck: line 80
    * MathCards.Hand: line 115
    */
-  
+
   private static Robot robot;
 
-  //used in Player.takeTurn, line 23.
+  //used in Player.takeTurn, line 23. Prints current values for deck and discard pile values. Shows
+  //values at the end of each turn to show function of draw and discard.
   public static void printDecks(){
     System.out.println(Game.deck.getDeck());
     System.out.println(Game.deck.getDiscard());
   }
 
-  //used in Deck.shuffle(), line 80.
+  //used in Deck.shuffle(), line 80. Prints current values for deck indices. Shows effectiveness
+  //of shuffle method.
   public static void printDeck(ArrayList<Integer> deck) {
     System.out.println(deck);
   }
 
-  //used in main method of Game, lines 61 and 67
+  //used in main method of Game, lines 61 and 67. Calls new instance of class Robot, passes 
+  // string parameter name to method type which returns keystrokes for name.
   public static void typeName(String name){
     try {
       robot = new Robot();
@@ -38,7 +46,8 @@ public class Test {
     }
   }
 
-  //used in Player.takeTurn(), line 45 
+  //Used in Player.takeTurn(), line 45. Calls new instance of Robot class and returns keystrokes for
+  //string "draw".
   public static void typeDraw(){
     try {
       robot = new Robot();
@@ -49,7 +58,9 @@ public class Test {
     }
   }
 
-  //used in Player.drop(), line 84
+  //Used in Player.drop(), line 84. Calls new instance of Robot class. Takes integer value of 
+  //randomly selected card from hand, passes to cardToChar. Return of cardToChar passed to typeChar 
+  //for keystroke.
   public static void typeDiscardValue(Integer integer){
     try {
       robot = new Robot();
@@ -60,7 +71,8 @@ public class Test {
     }
   }
 
-  //used in Hand.aceValue(), line 115
+  //Used in Hand.aceValue(), line 115. Returns user input for value of an Ace held in the player's
+  //hand.
   public static void typeAceValue(ArrayList<Integer> hand, int target){
     try {
       robot = new Robot();
@@ -91,6 +103,7 @@ public class Test {
     }
   }
 
+  //Takes integer input from hand and returns character value to pass to typeChar.
   public static char cardToChar(int card){
     char faceValue;
     if(card%100 == 13){
@@ -125,6 +138,7 @@ public class Test {
     return faceValue;
   }
 
+  //Takes character from cardToChar and returns corresponding keystroke.
   public static void typeChar(char character){
     switch (character) {
       case 'A': 
@@ -173,6 +187,8 @@ public class Test {
     }
   }
 
+  //Takes string parameter, converts to character array and returns corresponding keystroke for 
+  //each character array index value.
   public static void type(String string){
     char[] characters = string.toCharArray();
     for(int i = 0; i < characters.length; i++){

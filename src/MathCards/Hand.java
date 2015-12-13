@@ -20,6 +20,8 @@ public class Hand {
     this.hand = hand;
   }
 
+  //Takes parameter of player's name, converts hand array from integer to strings and prints the 
+  //string array with the players name.
   public void displayHand(String name){
     ArrayList<String> handFaceValue = new ArrayList<String>();
     for (int i = 0; i < hand.size(); i++){
@@ -39,6 +41,7 @@ public class Hand {
     System.out.println(name + ", your hand: " + handFaceValue);
   }
 
+  //Confirms if hand is empty. Used by Player.pickUpOrDrop to determine if user must draw.
   public boolean isEmpty(){
     if (hand.size() == 0){
       return true;
@@ -47,22 +50,26 @@ public class Hand {
 
   }
 
+  //Confirms if hand is full. Used by Player.pickUpOrDrop to determine if user must drop.
   public boolean isFull(){
     if (hand.size() == 5){
       return true;
     }
     return false;
   }
-
+  
+  //Takes parameter from Player.pickUp and adds to hand.
   public void addCard(int value){
     this.hand.add(value);
   }
 
+  //Takes parameter from Player.drop, removes from hand and adds to discard pile.
   public void dropCard(int discard){
     Game.getDeck().insertCard(hand.get(discard));
     hand.remove(discard);
   }
 
+  //Returns sum and product of hand.
   public int[] sumAndProduct(String name){
     int[] total = new int[2];
     int sum = 0;
@@ -84,6 +91,7 @@ public class Hand {
     return total;
   }
 
+  //Confirms if card exisits in hand.
   public int containsCard(String card){
     int index = -1;
     ArrayList<String> handFaceValue = new ArrayList<String>();
@@ -109,6 +117,8 @@ public class Hand {
     return index;
   }
 
+  
+  //Asks for user input to determine value of an Ace if one is in the players hand.
   public int aceValue(String name, String type){
     System.out.println(name + ", would you like to use your Ace as a 1 or 11 to find the " + type +
         "?");

@@ -8,6 +8,7 @@ public class Deck {
   private ArrayList<Integer> discard = new ArrayList<Integer>();
   private int target;
 
+  //Initializes values in array deck and shuffles.
   public Deck(){
     this.setTarget((int) ((Math.random()*40)+10));
     while (deck.size() < 52){
@@ -35,10 +36,12 @@ public class Deck {
     shuffle();
   }
 
+  //Adds card to discard pile
   public void insertCard(int card){
     discard.add(card);
   }
 
+  //Checks if deck still has cards, if so it draws the first card and returns value.
   public int drawCard(){
     int value;
     if (isEmpty()){
@@ -49,6 +52,7 @@ public class Deck {
     return value;
   }
 
+  //Checks if deck is empty
   public boolean isEmpty(){
     if (deck.size() == 0){
       return true;
@@ -56,6 +60,7 @@ public class Deck {
     return false;
   }
 
+  //If deck is empty, swaps with discard pile and shuffles.
   public void swapDeck(){
     for(int i = 0; i < discard.size(); i ++){
       deck.add(discard.get(i));
@@ -64,6 +69,8 @@ public class Deck {
     shuffle();
   }
 
+  //Assigns deck values to temporary array. Randomly pulls card from array and adds back to deck. 
+  //Repeats three times.
   public void shuffle(){
     ArrayList<Integer> shuffle = new ArrayList<Integer>();
     for(int j = 0; j < 3; j++){

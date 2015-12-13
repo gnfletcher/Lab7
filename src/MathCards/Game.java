@@ -68,6 +68,8 @@ public class Game {
     player2 = new Player (input.nextLine());
     
     int turns = 1;
+    //Main game play. Calls players to takeTurn, calls completeTurn to see if the target is met.
+    //Prints results of game.
     while( !player1.targetReached() && !player2.targetReached()){
       turns++;
       player1.takeTurn();

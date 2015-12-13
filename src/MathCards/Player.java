@@ -19,6 +19,7 @@ public class Player {
     this.hand = new Hand(); 
   }
 
+  //Prints target, players name and hand. Calls pickUpOrDrop method.
   public boolean takeTurn(){
     //Test.printDecks();
     System.out.println("Target: " + Game.getDeck().getTarget());
@@ -28,10 +29,13 @@ public class Player {
     return true;
   }
 
+  //Prints hand values
   public void displayHand(){
     hand.displayHand(name);
   }
 
+  //Determines if player must draw or discard or may choose. If given choice, validates selection
+  //prints player name and hand.
   public void pickUpOrDrop(){
     if(hand.isEmpty()){
       System.out.println("Your hand is empty, you must draw!");
@@ -57,6 +61,7 @@ public class Player {
     hand.displayHand(name);
   }
 
+  //Takes first index value in deck and adds to hand. Prints value of card drawn.
   public void pickUp(){
     int value = Game.getDeck().drawCard();
     hand.addCard(value);
@@ -75,6 +80,7 @@ public class Player {
     }
   }
 
+  //Takes user input and passes input to hand.dropCard.
   public void drop(){
     String value;
     int discard;
@@ -91,6 +97,7 @@ public class Player {
     hand.dropCard(discard);
   }
   
+  //Determine if target is met.
   public boolean targetReached(){
     if (total[0] == Game.getDeck().getTarget() || total [1] == Game.getDeck().getTarget()){
       return true;
@@ -98,6 +105,7 @@ public class Player {
     return false;
   }
 
+  //Call sumAndProduct to determine values from hand. Prints values. Calls targetReached.
   public boolean completeTurn(){
     total = hand.sumAndProduct(name);
     System.out.println(name +", your sum is " + total[0] + ".");
