@@ -57,19 +57,19 @@ public class Game {
 
     //set player 1 name
     System.out.println(("Please enter your name, Player 1:"));
-    //For testing, set string parameter for player 1's name
+    //For automated testing, set string parameter for player 1's name and uncomment.
     //Test.typeName("Greg");
     player1 = new Player (input.nextLine());
     
     //set player 2 name
     System.out.println(("Please enter your name, Player 2:"));
-    //For testing, set string parameter for player 2's name
+    //For automated testing, set string parameter for player 2's name and uncomment.
     //Test.typeName("Tom");
     player2 = new Player (input.nextLine());
     
     int turns = 1;
     //Main game play. Calls players to takeTurn, calls completeTurn to see if the target is met.
-    //Prints results of game.
+    //Prints results of game. Follow comments in Test class for automated testing.
     while( !player1.targetReached() && !player2.targetReached()){
       turns++;
       player1.takeTurn();

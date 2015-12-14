@@ -21,7 +21,7 @@ public class Hand {
   }
 
   //Takes parameter of player's name, converts hand array from integer to strings and prints the 
-  //string array with the players name.
+  //string array with the players name. Prints on every turn.
   public void displayHand(String name){
     ArrayList<String> handFaceValue = new ArrayList<String>();
     for (int i = 0; i < hand.size(); i++){
@@ -41,7 +41,8 @@ public class Hand {
     System.out.println(name + ", your hand: " + handFaceValue);
   }
 
-  //Confirms if hand is empty. Used by Player.pickUpOrDrop to determine if user must draw.
+  //Confirms if hand is empty. Used by Player.pickUpOrDrop to determine if user must draw. 
+  //Used on players first turn of the game.
   public boolean isEmpty(){
     if (hand.size() == 0){
       return true;
@@ -58,18 +59,19 @@ public class Hand {
     return false;
   }
   
-  //Takes parameter from Player.pickUp and adds to hand.
+  //Takes parameter from Player.pickUp and adds to hand. New card printed in hand.
   public void addCard(int value){
     this.hand.add(value);
   }
 
-  //Takes parameter from Player.drop, removes from hand and adds to discard pile.
+  //Takes parameter from Player.drop, removes from hand and adds to discard pile. Card will no
+  //longer print in hand. Uncomment line 24 to see added to discard pile. 
   public void dropCard(int discard){
     Game.getDeck().insertCard(hand.get(discard));
     hand.remove(discard);
   }
 
-  //Returns sum and product of hand.
+  //Returns sum and product of hand. Prints on every turn.
   public int[] sumAndProduct(String name){
     int[] total = new int[2];
     int sum = 0;
@@ -91,7 +93,7 @@ public class Hand {
     return total;
   }
 
-  //Confirms if card exisits in hand.
+  //Confirms if card exists in hand.
   public int containsCard(String card){
     int index = -1;
     ArrayList<String> handFaceValue = new ArrayList<String>();
@@ -118,7 +120,8 @@ public class Hand {
   }
 
   
-  //Asks for user input to determine value of an Ace if one is in the players hand.
+  //Asks for user input to determine value of an Ace if one is in the players hand. Uncomment line 
+  //128 to automate testing. See Test class for details.
   public int aceValue(String name, String type){
     System.out.println(name + ", would you like to use your Ace as a 1 or 11 to find the " + type +
         "?");

@@ -8,7 +8,8 @@ public class Deck {
   private ArrayList<Integer> discard = new ArrayList<Integer>();
   private int target;
 
-  //Initializes values in array deck and shuffles.
+  //Initializes values in array deck and calls shuffles. Uncomment line 90 to see at beginning of 
+  //game.
   public Deck(){
     this.setTarget((int) ((Math.random()*40)+10));
     while (deck.size() < 52){
@@ -36,12 +37,13 @@ public class Deck {
     shuffle();
   }
 
-  //Adds card to discard pile
+  //Adds card to discard pile. Uncomment line 24 in Player class to print discard pile on each turn.
   public void insertCard(int card){
     discard.add(card);
   }
 
-  //Checks if deck still has cards, if so it draws the first card and returns value.
+  //Checks if deck still has cards, if so it draws the first card and returns value. Uncomment line 
+  //24 in Player class to print deck on each turn to test.
   public int drawCard(){
     int value;
     if (isEmpty()){
@@ -52,7 +54,8 @@ public class Deck {
     return value;
   }
 
-  //Checks if deck is empty
+  //Checks if deck is empty. Tested by playing hand over 52 turns with line 90 uncommented which 
+  //initiates swapDeck and shuffle and prints shuffle.
   public boolean isEmpty(){
     if (deck.size() == 0){
       return true;
@@ -60,7 +63,7 @@ public class Deck {
     return false;
   }
 
-  //If deck is empty, swaps with discard pile and shuffles.
+  //If deck is empty, swaps with discard pile and shuffles. Tested by method as isEmpty method. 
   public void swapDeck(){
     for(int i = 0; i < discard.size(); i ++){
       deck.add(discard.get(i));
@@ -70,7 +73,7 @@ public class Deck {
   }
 
   //Assigns deck values to temporary array. Randomly pulls card from array and adds back to deck. 
-  //Repeats three times.
+  //Repeats three times. Uncomment line 90 to see print of shuffle.
   public void shuffle(){
     ArrayList<Integer> shuffle = new ArrayList<Integer>();
     for(int j = 0; j < 3; j++){

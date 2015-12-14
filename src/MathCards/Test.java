@@ -14,21 +14,21 @@ public class Test {
    * There are also methods to print values for deck and discard pile.
    * Uncomment the following lines to test:
    * MathCards.Game: lines 61 & 67
-   * MathCards.Player: lines 23, 45 & 84
-   * MathCards.Deck: line 80
-   * MathCards.Hand: line 115
+   * MathCards.Player: lines 24, 49 & 90
+   * MathCards.Deck: line 90
+   * MathCards.Hand: line 128
    */
 
   private static Robot robot;
 
-  //used in Player.takeTurn, line 23. Prints current values for deck and discard pile values. Shows
+  //used in Player.takeTurn, line 24. Prints current values for deck and discard pile values. Shows
   //values at the end of each turn to show function of draw and discard.
   public static void printDecks(){
     System.out.println(Game.deck.getDeck());
     System.out.println(Game.deck.getDiscard());
   }
 
-  //used in Deck.shuffle(), line 80. Prints current values for deck indices. Shows effectiveness
+  //used in Deck.shuffle(), line 88. Prints current values for deck indices. Shows effectiveness
   //of shuffle method.
   public static void printDeck(ArrayList<Integer> deck) {
     System.out.println(deck);

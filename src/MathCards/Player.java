@@ -29,13 +29,13 @@ public class Player {
     return true;
   }
 
-  //Prints hand values
+  //Prints hand values. Runs on every turn.
   public void displayHand(){
     hand.displayHand(name);
   }
 
   //Determines if player must draw or discard or may choose. If given choice, validates selection
-  //prints player name and hand.
+  //prints player name and hand. Uncomment line 49 for automated testing. See Test class for detail.
   public void pickUpOrDrop(){
     if(hand.isEmpty()){
       System.out.println("Your hand is empty, you must draw!");
@@ -80,7 +80,7 @@ public class Player {
     }
   }
 
-  //Takes user input and passes input to hand.dropCard.
+  //Takes user input and passes input to hand.dropCard. Uncomment line 90 for automated testing.
   public void drop(){
     String value;
     int discard;
